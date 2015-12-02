@@ -1,54 +1,26 @@
 package hello.models;
 
-import java.util.List;
-
 import javax.transaction.Transactional;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.repository.CrudRepository;
 
-@Repository
+/**
+ * A DAO for the entity User is simply created by extending the CrudRepository
+ * interface provided by spring. The following methods are some of the ones
+ * available from such interface: save, delete, deleteAll, findOne and findAll.
+ * The magic is that such methods must not be implemented, and moreover it is
+ * possible create new query methods working only by defining their signature!
+ * 
+ * @author netgloo
+ */
 @Transactional
-public class UserDao {
-  
-  @Autowired
-  private SessionFactory _sessionFactory;
-  
-  private Session getSession() {
-    return _sessionFactory.getCurrentSession();
-  }
+public interface UserDao extends CrudRepository<User, Long> {
 
-  public void save(User user) {
-    getSession().save(user);
-    return;
-  }
-  
-  public void delete(User user) {
-    getSession().delete(user);
-    return;
-  }
-  
-  @SuppressWarnings("unchecked")
-  public List<User> getAll() {
-    return getSession().createQuery("from User").list();
-  }
-  
-  public User getByEmail(String email) {
-    return (User) getSession().createQuery(
-        "from User where email = :email")
-        .setParameter("email", email)
-        .uniqueResult();
-  }
-
-  public User getById(long id) {
-    return (User) getSession().load(User.class, id);
-  }
-
-  public void update(User user) {
-    getSession().update(user);
-    return;
-  }
+  /**
+   * Return the user having the passed email or null if no user is found.
+   * 
+   * @param email the user email.
+   */
+  public User findByEmail(String email);
 
 } // class UserDao
