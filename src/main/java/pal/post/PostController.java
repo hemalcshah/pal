@@ -24,7 +24,9 @@ public class PostController {
     
     @RequestMapping(method = RequestMethod.POST)
 	Post add(@RequestBody Post input) {
-    	return postRepository.findOne(null);
+    	//validate input
+    	return postRepository.save(input);
+
     }
     
 	@RequestMapping("/create")
