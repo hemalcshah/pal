@@ -1,0 +1,22 @@
+<!doctype html>
+<html ng-app>
+	<head>
+		<title>Create Post</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+    	<script src="post.js"></script>
+	</head>
+
+	<body>
+	
+		<form ng-submit="submit()" ng-controller="PostSubmitController">
+
+			<p>Title: <input type="text" ng-model="title"></p>
+			<p>Description: <input type="text" ng-model="description"></p>
+
+			<input type="submit" id="submit" value="Submit" /><br>	
+			
+			<h4>You submitted below data through post:</h4>
+			 <pre>Form data ={{list}}</pre>
+		</form>
+	</body>
+</html>

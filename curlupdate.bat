@@ -1,0 +1,1 @@
+curl -H "Content-Type: application/json" -X POST -d '{"title":"Beautiful Day","description":"Rise and Shine","id":"2"}' http://localhost:8081/posts
