@@ -1,0 +1,18 @@
+<!doctype html>
+<html data-ng-app="post">
+	<head>
+		<title>Create Post with File Upload</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+    	<script src="post.js"></script>
+	</head>
+
+	<body>
+	
+		<div data-ng-controller="UploadController">
+			<p>Title: <input type="text" data-ng-model="title"></p>
+			<p>Description: <input type="text" data-ng-model="description"></p>
+			<p><input type="file" data-custom-file-model="myFile" /></p>
+			<p><button data-ng-click="uploadFile()">Upload</button></p>
+		</div>
+	</body>
+</html>

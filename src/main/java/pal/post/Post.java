@@ -1,9 +1,15 @@
 package pal.post;
 
+import java.util.Date;
+
+import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -21,6 +27,14 @@ public class Post {
 	@NotNull
 	private String description;
 
+	
+	@Lob @Basic(fetch = FetchType.LAZY)
+	@Column(length=100000) //16777215 
+	private byte[] media;
+	
+	
+	private Date createdDateTime;
+	
 	public Post() {
 	}
 
@@ -56,5 +70,22 @@ public class Post {
 	public void setTitle(String title) {
 		this.title = title;
 	}
+	
+	public byte[] getMedia() {
+		return media;
+	}
+
+	public void setMedia(byte[] media) {
+		this.media = media;
+	}
+
+	public Date getCreatedDateTime() {
+		return createdDateTime;
+	}
+
+	public void setCreatedDateTime(Date createdDateTime) {
+		this.createdDateTime = createdDateTime;
+	}
+
 
 }

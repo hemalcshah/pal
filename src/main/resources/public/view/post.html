@@ -1,8 +1,8 @@
 <!doctype html>
-<html ng-app>
+<html data-ng-app>
 	<head>
 		<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
-		<title>My Post</title>
+		<title>1My Post 1</title>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
     	<script src="post.js"></script>
 	</head>
@@ -13,19 +13,25 @@
 			Below is list of posts
 		</p>
 	
-		<div ng-controller="Post">
+		<div data-ng-controller="Post">
 			<table border="1">
 				<tr>
 					<th>ID</th>
 					<th>Title</th>
 					<th>Description</th>
-				<tr ng-repeat="post in posts">
+					<th>Date</th>
+					<th>Media</th>
+				</tr>
+				<tr data-ng-repeat="post in posts">
 					<td> {{post.id}}</td>
 					<td> {{post.title}}</td>
 					<td> {{post.description}}</td>
-					
+					<td> {{post.createdDateTime}}</td>
+					<td> <img ng-src="data:image/JPEG;base64,{{post.media}}" width="800" height="600" ></td>
+					<!-- 1200 630 --- 3264,2448, 600 and 450 or 75% -->
 				</tr>
 			</table>
+			<br />
 		</div>
 		
 	</body>
