@@ -1,42 +1,40 @@
 <!doctype html>
-<html data-ng-app>
+<html data-ng-app="post">
 	<head>
 		<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
-		<title>1My Post 1</title>
+		<title>My Posts</title>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
     	<script src="post.js"></script>
 	</head>
 
 	<body >
-
-			<p>
-				<br/>
-				<a href="/view/postupload.html" > <button><font size="4">Add Post</font></button></a>
-				<br/>
-				<br/>
-			</p>
+		<p>
+			<br/>
+			<a href="/view/postupload.html" > <button><font size="4">Add Post</font></button></a>
+			<br/>
+			<br/>
+		</p>
+		
+		<hr width="800" align="left" />		
+		
+		<div data-ng-controller="Post">
+			<div data-ng-repeat="post in posts">
 			
-			<hr width="800" align="left" />		
-			
-			<div data-ng-controller="Post">
-				<div data-ng-repeat="post in posts">
-				
-					<p>
-						<u><b><font size="10"> 
-							{{post.title}} - {{post.id}}
-						</font></b></u>
-					</p> 
-					<p><font size="5">{{post.description}}</font></p>
-					<br/>					
-					<img data-ng-src="data:image/JPEG;base64,{{post.media}}" width="800" height="600" >
-						<!-- 1200 630 --- 3264,2448, 600 and 450 or 75% -->
-					<br/>
-					<br/>
-					<br/>
-					<br/>		
-					<hr width="800" align="left" />		
-				</div>
+				<p>
+					<u><b><font size="10"> 
+						{{post.title}} - {{post.id}}
+					</font></b></u>
+				</p> 
+				<p><font size="5">{{post.description}}</font></p>
+				<br/>					
+				<img data-ng-src="data:image/JPEG;base64,{{post.media}}" width="800" height="600" >
+					<!-- 1200 630 --- 3264,2448, 600 and 450 or 75% -->
+				<br/>
+				<br/>
+				<br/>
+				<hr width="800" align="left" />		
 			</div>
+		</div>
 
 	<!-- 	
 		<div data-ng-controller="Post">

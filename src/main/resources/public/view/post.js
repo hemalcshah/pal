@@ -46,41 +46,38 @@ app.directive('customFileModel', [ '$parse', function($parse) {
 	};
 } ]);
 
-app.service('fileUpload', ['$http', 
-	function($http, ArchiveService) {
-		this.uploadFileToUrl = function(uploadUrl, file, title,description) {
-				var fd = new FormData();
-				fd.append('file', file);
-				fd.append('title', title);
-				fd.append('description', description);
-				$http.post(uploadUrl, fd, {
-					transformRequest : angular.identity,
-					headers : { 'Content-Type' : undefined 	}
-				})
-				.success(function() {
-					alert('Post Created Successfully.');
-				})
-				.error(function() {
-					alert('Error Post Failed.');
-				});
-		}
-	}
+app.service('fileUpload', ['$http', '$window' ,
+   	function($http,$window) {
+   		this.uploadFileToUrl = function(uploadUrl, file, title,description) {
+   				var fd = new FormData();
+   				fd.append('file', file);
+   				fd.append('title', title);
+   				fd.append('description', description);
+   				$http.post(uploadUrl, fd, {
+   					transformRequest : angular.identity,
+   					headers : { 'Content-Type' : undefined 	}
+   				})
+   				.success(function() {
+   					// alert('2 Post Created Successfully.');
+   					$window.location.href = '/view/posts.html';
+   				})
+   				.error(function() {
+   					alert('Error Post Failed.');
+   				});
+   		}
+   	}
 ]);
 
-app.controller('UploadController', [ '$scope', 'fileUpload',
-	function($scope, fileUpload) {
-		$scope.uploadFile = function() {
-			var file = $scope.myFile;
-			var title = $scope.title;
-			var description = $scope.description;
-			var uploadUrl = "/posts/upload";
-
-			//console.log('file is ' + JSON.stringify(file));
-			
-			
-			fileUpload.uploadFileToUrl(uploadUrl, file, title, description);
-			
-		};
-	} 
-]);
+function UploadController($scope, fileUpload, $window){
+	
+	$scope.uploadFile = function() {
+		var file = $scope.myFile;
+		var title = $scope.title;
+		var description = $scope.description;
+		var uploadUrl = "/posts/upload";
+		//console.log('file is ' + JSON.stringify(file));
+		fileUpload.uploadFileToUrl(uploadUrl, file, title, description);
+	};
+} 
+   
 
