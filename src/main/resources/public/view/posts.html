@@ -10,7 +10,9 @@
 	<body>
 	
 		<p>
-			Below is list of posts
+			<br/>
+			<a href="/view/postupload.html">Add new Post</a>
+			<br/>
 		</p>
 	
 		<div data-ng-controller="Post">
@@ -27,12 +29,19 @@
 					<td> {{post.title}}</td>
 					<td> {{post.description}}</td>
 					<td> {{post.createdDateTime}}</td>
-					<td> <img ng-src="data:image/JPEG;base64,{{post.media}}" width="800" height="600" ></td>
+					<td> <img data-ng-src="data:image/JPEG;base64,{{post.media}}" width="800" height="600" ></td>
 					<!-- 1200 630 --- 3264,2448, 600 and 450 or 75% -->
 				</tr>
 			</table>
 			<br />
 		</div>
-		
+		<!--  <tr data-ng-repeat="post in posts">
+					<p> Title: <b>{post.id}} -  {{post.title}} - {{post.createdDateTime}} </b></p>
+					<p> {{post.description}}</p>
+
+					<br/>
+					<img ng-src="data:image/JPEG;base64,{{post.media}}" width="800" height="600" >
+					<!-- 1200 630 --- 3264,2448, 600 and 450 or 75% -->
+				</tr> -->
 	</body>
 </html>

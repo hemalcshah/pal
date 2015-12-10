@@ -1,6 +1,9 @@
 package pal.post;
 
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,9 +24,16 @@ public class PostController {
     @RequestMapping(method = RequestMethod.GET)
     public Iterable<Post> getAll() {
 
-    	Iterable<Post> postList = postRepository.findAll();
-    	
-    	return postList;
+    	Iterable<Post> postIterator = postRepository.findAll();
+    	List<Post> list = StreamSupport.stream(postIterator.spliterator(), false).
+    		sorted(
+    			(e1,e2) -> new Long(e2.getId()).compareTo(e1.getId()) 
+    		).collect(Collectors.toList());
+    	//new ArrayList(Collection.getpostList);
+    	// new Sort(Sort.Direction.DESC,"id")
+    	//stream.toArray()
+    	//return postList.
+    	return list;
     }
     
     @RequestMapping(method = RequestMethod.POST)
@@ -54,15 +64,16 @@ public class PostController {
             @RequestParam(value="description", required=true) String description) {
         
         try {
-            System.out.println("file name: " + file.getOriginalFilename());
-            System.out.println("file size: " + file.getSize());
-            
-            //);Document document = new Document(file.getBytes(), file.getOriginalFilename(), date, person );
-            
-            //return document.getMetadata();
-            Post post = new Post(title,description);
+        	Post post = new Post(title,description);
             post.setCreatedDateTime(new Date());
-            post.setMedia(file.getBytes());
+        	if( file != null) {
+        		System.out.println("file name: " + file.getOriginalFilename());
+                System.out.println("file size: " + file.getSize());
+                post.setMedia(file.getBytes());    
+        	}
+            //return document.getMetadata();
+            
+            
             postRepository.save(post);
             return post;
         } catch (RuntimeException e) {

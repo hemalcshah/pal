@@ -7,8 +7,14 @@
 	</head>
 
 	<body>
-	
+		
 		<div data-ng-controller="UploadController">
+			<pre>{{list}}</pre>
+			<p>
+				<br/>
+				<a href="/view/posts.html">Show All Posts</a>
+				<br/>
+			</p>
 			<p>Title: <input type="text" data-ng-model="title"></p>
 			<p>Description: <input type="text" data-ng-model="description"></p>
 			<p><input type="file" data-custom-file-model="myFile" /></p>

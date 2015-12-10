@@ -58,8 +58,10 @@ app.service('fileUpload', ['$http',
 					headers : { 'Content-Type' : undefined 	}
 				})
 				.success(function() {
+					alert('Post Created Successfully.');
 				})
 				.error(function() {
+					alert('Error Post Failed.');
 				});
 		}
 	}
@@ -71,9 +73,13 @@ app.controller('UploadController', [ '$scope', 'fileUpload',
 			var file = $scope.myFile;
 			var title = $scope.title;
 			var description = $scope.description;
-			console.log('file is ' + JSON.stringify(file));
 			var uploadUrl = "/posts/upload";
+
+			//console.log('file is ' + JSON.stringify(file));
+			
+			
 			fileUpload.uploadFileToUrl(uploadUrl, file, title, description);
+			
 		};
 	} 
 ]);
