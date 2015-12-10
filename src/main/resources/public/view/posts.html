@@ -7,14 +7,38 @@
     	<script src="post.js"></script>
 	</head>
 
-	<body>
-	
-		<p>
-			<br/>
-			<a href="/view/postupload.html">Add new Post</a>
-			<br/>
-		</p>
-	
+	<body >
+
+			<p>
+				<br/>
+				<a href="/view/postupload.html" > <button><font size="4">Add Post</font></button></a>
+				<br/>
+				<br/>
+			</p>
+			
+			<hr width="800" align="left" />		
+			
+			<div data-ng-controller="Post">
+				<div data-ng-repeat="post in posts">
+				
+					<p>
+						<u><b><font size="10"> 
+							{{post.title}} - {{post.id}}
+						</font></b></u>
+					</p> 
+					<p><font size="5">{{post.description}}</font></p>
+					<br/>					
+					<img data-ng-src="data:image/JPEG;base64,{{post.media}}" width="800" height="600" >
+						<!-- 1200 630 --- 3264,2448, 600 and 450 or 75% -->
+					<br/>
+					<br/>
+					<br/>
+					<br/>		
+					<hr width="800" align="left" />		
+				</div>
+			</div>
+
+	<!-- 	
 		<div data-ng-controller="Post">
 			<table border="1">
 				<tr>
@@ -30,18 +54,10 @@
 					<td> {{post.description}}</td>
 					<td> {{post.createdDateTime}}</td>
 					<td> <img data-ng-src="data:image/JPEG;base64,{{post.media}}" width="800" height="600" ></td>
-					<!-- 1200 630 --- 3264,2448, 600 and 450 or 75% -->
 				</tr>
 			</table>
 			<br />
 		</div>
-		<!--  <tr data-ng-repeat="post in posts">
-					<p> Title: <b>{post.id}} -  {{post.title}} - {{post.createdDateTime}} </b></p>
-					<p> {{post.description}}</p>
-
-					<br/>
-					<img ng-src="data:image/JPEG;base64,{{post.media}}" width="800" height="600" >
-					<!-- 1200 630 --- 3264,2448, 600 and 450 or 75% -->
-				</tr> -->
+	-->
 	</body>
 </html>
